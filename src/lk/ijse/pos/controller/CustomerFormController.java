@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.pos.db.DataBase;
@@ -28,6 +29,7 @@ public class CustomerFormController {
     public TableColumn colCusSalary;
     public TableColumn colCusOperate;
     public Button btnSave;
+    public TextField txtSearch;
 
     public void initialize() {
         colCusId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -40,7 +42,10 @@ public class CustomerFormController {
         //-----------------------------
         tblCustomer.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
-                    setData(newValue);
+                    if (newValue != null) {
+                        setData(newValue);
+                    }
+
                 });
         //-----------------------------
 
@@ -67,6 +72,13 @@ public class CustomerFormController {
             observableList.add(
                     new CustomerTM(c.getId(), c.getName(), c.getAddress(), c.getSalary(), btn)
             );
+
+            btn.setOnAction(e -> {
+                if (DataBase.customersList.remove(c)) {
+                    loadAllCustomers();
+                }
+            });
+
         }
         tblCustomer.setItems(observableList);
     }
@@ -101,17 +113,18 @@ public class CustomerFormController {
         } else {
 
             for (int i = 0; i < DataBase.customersList.size(); i++) {
-
                 if (txtCId.getText().equals(DataBase.customersList.get(i).getId())) {
                     DataBase.customersList.remove(i);
                     if (DataBase.customersList.add(customer1)) {
                         new Alert(Alert.AlertType.CONFIRMATION,
                                 "Updated.", ButtonType.OK).show();
                         loadAllCustomers();
+                        break;
                     } else {
                         new Alert(Alert.AlertType.WARNING,
                                 "Try Again.", ButtonType.CLOSE).show();
                     }
+                    /*break;*/
                 }
 
             }
@@ -127,5 +140,13 @@ public class CustomerFormController {
         txtCName.clear();
         txtCAddress.clear();
         txtCSalary.clear();
+    }
+
+    String searchText = "";
+
+    public void search(KeyEvent keyEvent) {
+       /* searchText=searchText+""+keyEvent.getText();
+        System.out.println(searchText);*/
+        System.out.println(txtSearch.getText());
     }
 }
