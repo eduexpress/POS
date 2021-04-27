@@ -142,11 +142,31 @@ public class CustomerFormController {
         txtCSalary.clear();
     }
 
-    String searchText = "";
+
 
     public void search(KeyEvent keyEvent) {
        /* searchText=searchText+""+keyEvent.getText();
         System.out.println(searchText);*/
-        System.out.println(txtSearch.getText());
+        String searchText = "";
+        searchText = txtSearch.getText();
+
+        ObservableList<CustomerTM> searchTm = FXCollections.observableArrayList();
+
+        for (Customer c1 : DataBase.customersList
+        ) {
+            if (
+                    c1.getId().contains(searchText) ||
+                            c1.getName().contains(searchText) ||
+                            c1.getAddress().contains(searchText)
+            ) {
+                Button btn = new Button("Delete");
+                searchTm.add(new CustomerTM(
+                        c1.getId(),
+                        c1.getName(),
+                        c1.getAddress(), c1.getSalary(), btn));
+            }
+        }
+        tblCustomer.setItems(searchTm);
+
     }
 }
