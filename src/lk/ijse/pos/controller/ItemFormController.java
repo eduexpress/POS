@@ -1,5 +1,7 @@
 package lk.ijse.pos.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.pos.db.DataBase;
 import lk.ijse.pos.model.Item;
+import lk.ijse.pos.views.tm.ItemTM;
 
 import java.io.IOException;
 
@@ -21,6 +24,12 @@ public class ItemFormController {
     public TextField txtUnitPrice;
     public TextField txtDescription;
     public Button btnSaveButton;
+
+    ObservableList<ItemTM> obList = FXCollections.observableArrayList();
+
+    public void initialize() {
+        //loadItems(obList);
+    }
 
     public void backToHomeOnAction(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) contextOfItemForm.
