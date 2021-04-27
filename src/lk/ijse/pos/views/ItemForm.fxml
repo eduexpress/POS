@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="491.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="$CONTROLLER_NAME$">
+   <children>
+      <Button layoutX="24.0" layoutY="24.0" mnemonicParsing="false" text="Back To Home" textFill="#9e0505">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label alignment="CENTER" layoutX="139.0" layoutY="21.0" prefHeight="35.0" prefWidth="461.0" text="Item Form" textFill="#2f0051">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="654.0" layoutY="24.0" mnemonicParsing="false" text="+ New Item" textFill="#06299c">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField layoutX="24.0" layoutY="77.0" promptText="Item Code">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="193.0" layoutY="77.0" prefHeight="29.0" prefWidth="313.0" promptText="QTY On Hand">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="520.0" layoutY="77.0" prefHeight="29.0" prefWidth="221.0" promptText="Unit Price">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <TextField layoutX="24.0" layoutY="113.0" prefHeight="29.0" prefWidth="591.0" promptText="Description">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <Button layoutX="635.0" layoutY="113.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="107.0" text="Save Item" textFill="#06299c">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField layoutX="24.0" layoutY="173.0" prefHeight="29.0" prefWidth="717.0" promptText="Search here">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <TableView layoutX="24.0" layoutY="213.0" prefHeight="265.0" prefWidth="717.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="Code" />
+            <TableColumn prefWidth="162.0" text="Description" />
+            <TableColumn prefWidth="220.0" text="Unit Price" />
+            <TableColumn prefWidth="116.0" text="QTY" />
+            <TableColumn prefWidth="143.0" text="Operate" />
+         </columns>
+      </TableView>
+      <Separator layoutX="24.0" layoutY="67.0" prefHeight="0.0" prefWidth="717.0" />
+   </children>
+</AnchorPane>
