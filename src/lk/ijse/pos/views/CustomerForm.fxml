@@ -19,12 +19,13 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="613.0" layoutY="14.0" mnemonicParsing="false" text="+ New Customer" textFill="#06299c">
+      <Button layoutX="613.0" layoutY="14.0" mnemonicParsing="false" onAction="#newCustomerOnAction"
+              text="+ New Customer" textFill="#06299c">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="System Bold" size="13.0"/>
          </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="HAND"/>
          </cursor>
       </Button>
       <Separator layoutX="14.0" layoutY="57.0" prefHeight="0.0" prefWidth="717.0" />

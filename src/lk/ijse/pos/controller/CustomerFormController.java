@@ -93,14 +93,39 @@ public class CustomerFormController {
             if (DataBase.customersList.add(customer1)) {
                 new Alert(Alert.AlertType.CONFIRMATION,
                         "Done", ButtonType.OK).show();
+                loadAllCustomers();
             } else {
                 new Alert(Alert.AlertType.WARNING,
                         "Try Again.", ButtonType.CLOSE).show();
             }
         } else {
-            // update
+
+            for (int i = 0; i < DataBase.customersList.size(); i++) {
+
+                if (txtCId.getText().equals(DataBase.customersList.get(i).getId())) {
+                    DataBase.customersList.remove(i);
+                    if (DataBase.customersList.add(customer1)) {
+                        new Alert(Alert.AlertType.CONFIRMATION,
+                                "Updated.", ButtonType.OK).show();
+                        loadAllCustomers();
+                    } else {
+                        new Alert(Alert.AlertType.WARNING,
+                                "Try Again.", ButtonType.CLOSE).show();
+                    }
+                }
+
+            }
+
         }
 
 
+    }
+
+    public void newCustomerOnAction(ActionEvent actionEvent) {
+        btnSave.setText("Save Customer");
+        txtCId.clear();
+        txtCName.clear();
+        txtCAddress.clear();
+        txtCSalary.clear();
     }
 }
