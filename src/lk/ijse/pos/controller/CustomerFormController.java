@@ -27,8 +27,9 @@ public class CustomerFormController {
     public TableColumn colCusAddress;
     public TableColumn colCusSalary;
     public TableColumn colCusOperate;
+    public Button btnSave;
 
-    public void initialize(){
+    public void initialize() {
         colCusId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colCusName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colCusAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -38,24 +39,33 @@ public class CustomerFormController {
 
         //-----------------------------
         tblCustomer.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue)->{
-                    System.out.println(newValue);
-        } );
+                .addListener((observable, oldValue, newValue) -> {
+                    setData(newValue);
+                });
         //-----------------------------
 
 
     }
 
+    private void setData(CustomerTM value) {
+        txtCId.setText(value.getId());
+        txtCName.setText(value.getName());
+        txtCAddress.setText(value.getAddress());
+        /*txtCSalary.setText(value.getSalary()+"");*/
+        txtCSalary.setText(String.valueOf(value.getSalary()));
+        btnSave.setText("Update Customer");
+    }
+
     private void loadAllCustomers() {
         ObservableList<CustomerTM> observableList
                 = FXCollections.observableArrayList();
-        for (Customer c:DataBase.customersList
-             ) {
+        for (Customer c : DataBase.customersList
+        ) {
 
-            Button btn= new Button("Delete");
+            Button btn = new Button("Delete");
 
             observableList.add(
-              new CustomerTM(c.getId(),c.getName(),c.getAddress(),c.getSalary(),btn)
+                    new CustomerTM(c.getId(), c.getName(), c.getAddress(), c.getSalary(), btn)
             );
         }
         tblCustomer.setItems(observableList);
@@ -77,12 +87,20 @@ public class CustomerFormController {
                 txtCAddress.getText(),
                 Double.parseDouble(txtCSalary.getText())
         );
-        if (DataBase.customersList.add(customer1)){
-            new Alert(Alert.AlertType.CONFIRMATION,
-                    "Done", ButtonType.OK).show();
-        }else{
-            new Alert(Alert.AlertType.WARNING,
-                    "Try Again.", ButtonType.CLOSE).show();
+
+        if (btnSave.getText().equals("Save Customer")) {
+            // save
+            if (DataBase.customersList.add(customer1)) {
+                new Alert(Alert.AlertType.CONFIRMATION,
+                        "Done", ButtonType.OK).show();
+            } else {
+                new Alert(Alert.AlertType.WARNING,
+                        "Try Again.", ButtonType.CLOSE).show();
+            }
+        } else {
+            // update
         }
+
+
     }
 }
