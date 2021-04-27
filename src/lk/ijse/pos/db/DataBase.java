@@ -16,6 +16,14 @@ public class DataBase {
                 "Colombo", 25000));
         customersList.add(new Customer("C-002", "Wasantha",
                 "Panadura", 50000));
+        //-------------------------------------
+        itemList.add(new Item(
+                "I-001", "Description 1", 20, 250
+        ));
+        itemList.add(new Item(
+                "I-001", "Description 1", 50, 150
+        ));
+
     }
 
 }
