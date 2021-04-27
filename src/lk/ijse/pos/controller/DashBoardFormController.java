@@ -13,20 +13,31 @@ public class DashBoardFormController {
     public AnchorPane contextOfDashBoard;
 
     public void openCustomerForm(MouseEvent mouseEvent) throws IOException {
-        Stage stage = (Stage) contextOfDashBoard.
+       /* Stage stage = (Stage) contextOfDashBoard.
                 getScene().getWindow();
         stage.setScene(new Scene(
                 FXMLLoader.load(getClass()
                         .getResource
-                                ("../views/CustomerForm.fxml"))));
+                                ("../views/CustomerForm.fxml"))));*/
+        setUI("CustomerForm");
     }
 
     public void openItemForm(MouseEvent mouseEvent) throws IOException {
+        /*Stage stage = (Stage) contextOfDashBoard.
+                getScene().getWindow();
+        stage.setScene(new Scene(
+                FXMLLoader.load(getClass()
+                        .getResource
+                                ("../views/ItemForm.fxml"))));*/
+        setUI("ItemForm");
+    }
+
+    private void setUI(String location) throws IOException {
         Stage stage = (Stage) contextOfDashBoard.
                 getScene().getWindow();
         stage.setScene(new Scene(
                 FXMLLoader.load(getClass()
                         .getResource
-                                ("../views/ItemForm.fxml"))));
+                                ("../views/" + location + ".fxml"))));
     }
 }
