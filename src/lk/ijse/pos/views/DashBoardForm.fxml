@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-
 <AnchorPane fx:id="contextOfDashBoard" prefHeight="264.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pos.controller.DashBoardFormController">
    <children>
       <Label alignment="CENTER" layoutY="14.0" prefHeight="69.0" prefWidth="600.0" text="POS SYSTEM" textFill="#b50000">
@@ -27,12 +24,13 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <ImageView fitHeight="69.0" fitWidth="104.0" layoutX="183.0" layoutY="130.0" pickOnBounds="true">
+      <ImageView fitHeight="69.0" fitWidth="104.0" layoutX="183.0" layoutY="130.0" onMouseClicked="#openItemForm"
+                 pickOnBounds="true">
          <image>
-            <Image url="@../asserts/Items-image.png" />
+            <Image url="@../asserts/Items-image.png"/>
          </image>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="HAND"/>
          </cursor>
       </ImageView>
       <ImageView fitHeight="69.0" fitWidth="104.0" layoutX="29.0" layoutY="131.0" onMouseClicked="#openCustomerForm" pickOnBounds="true">
