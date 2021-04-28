@@ -40,6 +40,23 @@ public class ItemFormController {
         colItemOperate.setCellValueFactory(new PropertyValueFactory<>("btn"));
 
         loadItems("");
+
+        //----------------------------
+
+        tblItems.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                setData(newValue);
+            }
+        });
+
+        //----------------------------
+    }
+
+    private void setData(ItemTM tm) {
+        txtItemCode.setText(tm.getId());
+        txtDescription.setText(tm.getDescription());
+        txtQTYOnHand.setText(String.valueOf(tm.getQtyOnHand()));
+        txtUnitPrice.setText(String.valueOf(tm.getUnitPrice()));
     }
 
     private void loadItems(String searchText) {

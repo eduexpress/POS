@@ -59,4 +59,15 @@ public class ItemTM {
     public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
+
+    @Override
+    public String toString() {
+        return "ItemTM{" +
+                "id='" + id + '\'' +
+                ", description='" + description + '\'' +
+                ", qtyOnHand=" + qtyOnHand +
+                ", unitPrice=" + unitPrice +
+                ", btn=" + btn +
+                '}';
+    }
 }
