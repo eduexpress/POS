@@ -5,10 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.pos.db.DataBase;
@@ -24,11 +22,38 @@ public class ItemFormController {
     public TextField txtUnitPrice;
     public TextField txtDescription;
     public Button btnSaveButton;
+    public TableView<ItemTM> tblItems;
+    public TableColumn colItemCode;
+    public TableColumn colItemDescription;
+    public TableColumn colItemUnitPrice;
+    public TableColumn colItemQTY;
+    public TableColumn colItemOperate;
 
     ObservableList<ItemTM> obList = FXCollections.observableArrayList();
 
     public void initialize() {
-        //loadItems(obList);
+
+        colItemCode.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colItemDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colItemQTY.setCellValueFactory(new PropertyValueFactory<>("qtyOnHand"));
+        colItemUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colItemOperate.setCellValueFactory(new PropertyValueFactory<>("btn"));
+
+        loadItems("");
+    }
+
+    private void loadItems(String searchText) {
+        for (Item i : DataBase.itemList
+        ) {
+
+            Button btn = new Button("Delete");
+
+            if (i.getId().contains(searchText) || i.getDescription().contains(searchText)) {
+                obList.add(new ItemTM(i.getId(), i.getDescription(), i.getQtyOnHand(), i.getUnitPrice(), btn));
+            }
+        }
+        tblItems.setItems(obList);
+
     }
 
     public void backToHomeOnAction(ActionEvent actionEvent) throws IOException {

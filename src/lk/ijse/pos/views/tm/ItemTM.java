@@ -1,19 +1,31 @@
 package lk.ijse.pos.views.tm;
 
+import javafx.scene.control.Button;
+
 public class ItemTM {
     private String id;
     private String description;
     private int qtyOnHand;
     private double unitPrice;
+    private Button btn;
 
     public ItemTM() {
     }
 
-    public ItemTM(String id, String description, int qtyOnHand, double unitPrice) {
+    public ItemTM(String id, String description, int qtyOnHand, double unitPrice, Button btn) {
         this.id = id;
         this.description = description;
         this.qtyOnHand = qtyOnHand;
         this.unitPrice = unitPrice;
+        this.btn = btn;
+    }
+
+    public Button getBtn() {
+        return btn;
+    }
+
+    public void setBtn(Button btn) {
+        this.btn = btn;
     }
 
     public String getId() {

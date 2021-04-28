@@ -6,6 +6,7 @@ public class Item {
     private int qtyOnHand;
     private double unitPrice;
 
+
     public Item() {
     }
 
@@ -15,6 +16,7 @@ public class Item {
         this.qtyOnHand = qtyOnHand;
         this.unitPrice = unitPrice;
     }
+
 
     public String getId() {
         return id;

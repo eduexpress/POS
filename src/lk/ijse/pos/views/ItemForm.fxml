@@ -68,13 +68,13 @@
             <Font size="13.0" />
          </font>
       </TextField>
-      <TableView layoutX="24.0" layoutY="213.0" prefHeight="265.0" prefWidth="717.0">
+      <TableView fx:id="tblItems" layoutX="24.0" layoutY="213.0" prefHeight="265.0" prefWidth="717.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="Code" />
-            <TableColumn prefWidth="162.0" text="Description" />
-            <TableColumn prefWidth="220.0" text="Unit Price" />
-            <TableColumn prefWidth="116.0" text="QTY" />
-            <TableColumn prefWidth="143.0" text="Operate" />
+            <TableColumn fx:id="colItemCode" prefWidth="75.0" text="Code"/>
+            <TableColumn fx:id="colItemDescription" prefWidth="162.0" text="Description"/>
+            <TableColumn fx:id="colItemUnitPrice" prefWidth="220.0" text="Unit Price"/>
+            <TableColumn fx:id="colItemQTY" prefWidth="116.0" text="QTY"/>
+            <TableColumn fx:id="colItemOperate" prefWidth="143.0" text="Operate"/>
          </columns>
       </TableView>
       <Separator layoutX="24.0" layoutY="67.0" prefHeight="0.0" prefWidth="717.0" />
