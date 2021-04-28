@@ -21,7 +21,7 @@ public class DataBase {
                 "I-001", "Description 1", 20, 250
         ));
         itemList.add(new Item(
-                "I-001", "Description 1", 50, 150
+                "I-002", "Description 2", 50, 150
         ));
 
     }

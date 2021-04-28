@@ -63,9 +63,10 @@
             <Cursor fx:constant="HAND"/>
          </cursor>
       </Button>
-      <TextField layoutX="24.0" layoutY="173.0" prefHeight="29.0" prefWidth="717.0" promptText="Search here">
+      <TextField fx:id="txtSearch" layoutX="24.0" layoutY="173.0" onKeyReleased="#searchItem" prefHeight="29.0"
+                 prefWidth="717.0" promptText="Search here">
          <font>
-            <Font size="13.0" />
+            <Font size="13.0"/>
          </font>
       </TextField>
       <TableView fx:id="tblItems" layoutX="24.0" layoutY="213.0" prefHeight="265.0" prefWidth="717.0">

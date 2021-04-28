@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.pos.db.DataBase;
@@ -28,6 +29,7 @@ public class ItemFormController {
     public TableColumn colItemUnitPrice;
     public TableColumn colItemQTY;
     public TableColumn colItemOperate;
+    public TextField txtSearch;
 
     ObservableList<ItemTM> obList = FXCollections.observableArrayList();
 
@@ -57,9 +59,12 @@ public class ItemFormController {
         txtDescription.setText(tm.getDescription());
         txtQTYOnHand.setText(String.valueOf(tm.getQtyOnHand()));
         txtUnitPrice.setText(String.valueOf(tm.getUnitPrice()));
+        btnSaveButton.setText("Update Item");
     }
 
     private void loadItems(String searchText) {
+        obList.clear();
+        System.out.println(searchText);
         for (Item i : DataBase.itemList
         ) {
 
@@ -67,7 +72,18 @@ public class ItemFormController {
 
             if (i.getId().contains(searchText) || i.getDescription().contains(searchText)) {
                 obList.add(new ItemTM(i.getId(), i.getDescription(), i.getQtyOnHand(), i.getUnitPrice(), btn));
+
+                btn.setOnAction(e -> {
+                    if (DataBase.itemList.remove(i)) {
+                        new Alert(Alert.AlertType.CONFIRMATION, "Deleted").show();
+                        loadItems("");
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Try Again").show();
+                    }
+                });
+
             }
+
         }
         tblItems.setItems(obList);
 
@@ -83,6 +99,11 @@ public class ItemFormController {
     }
 
     public void newItemOnAction(ActionEvent actionEvent) {
+        txtItemCode.clear();
+        txtUnitPrice.setText("");
+        txtDescription.clear();
+        txtQTYOnHand.clear();
+        btnSaveButton.setText("Save Item");
     }
 
     public void saveItemOnAction(ActionEvent actionEvent) {
@@ -103,8 +124,27 @@ public class ItemFormController {
                         .show();
             }
         } else {
-            //update
+            int counter = 0;
+            for (Item i : DataBase.itemList
+            ) {
+                if (txtItemCode.getText().equals(i.getId())) {
+                    DataBase.itemList.get(counter).setDescription(txtDescription.getText());
+                    DataBase.itemList.get(counter).setQtyOnHand(Integer.parseInt(txtQTYOnHand.getText()));
+                    DataBase.itemList.get(counter).setUnitPrice(Double.parseDouble(txtUnitPrice.getText()));
+                    loadItems("");
+                    break;
+                }
+                counter++;
+            }
+
         }
 
+    }
+
+    /*String tempSearchText = "";*/
+
+    public void searchItem(KeyEvent keyEvent) {
+        /*tempSearchText = tempSearchText + "" + keyEvent.getText();*/
+        loadItems(txtSearch.getText());
     }
 }
