@@ -41,12 +41,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="69.0" fitWidth="104.0" layoutX="335.0" layoutY="131.0" pickOnBounds="true">
+      <ImageView fitHeight="69.0" fitWidth="104.0" layoutX="335.0" layoutY="131.0" onMouseClicked="#PlaceOrderForm"
+                 pickOnBounds="true">
          <image>
-            <Image url="@../asserts/Order-image%5D.png" />
+            <Image url="@../asserts/Order-image%5D.png"/>
          </image>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="HAND"/>
          </cursor>
       </ImageView>
       <ImageView fitHeight="69.0" fitWidth="104.0" layoutX="482.0" layoutY="131.0" pickOnBounds="true">

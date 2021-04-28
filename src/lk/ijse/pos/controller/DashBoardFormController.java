@@ -40,4 +40,8 @@ public class DashBoardFormController {
                         .getResource
                                 ("../views/" + location + ".fxml"))));
     }
+
+    public void PlaceOrderForm(MouseEvent mouseEvent) throws IOException {
+        setUI("PlaceOrderForm");
+    }
 }
