@@ -31,12 +31,13 @@ public class PlaceOrderFormController {
     public TextField ItemQTYOnHand;
     public TextField txtItemUnitPrice;
     public TextField txtQty;
-    public TableView tblcart;
+    public TableView<CartTM> tblcart;
     public TableColumn colItemCode;
     public TableColumn colDescription;
     public TableColumn colQTY;
     public TableColumn colUnitPrice;
     public TableColumn colTotal;
+    public Label txtTotal;
 
     public void initialize() {
 
@@ -59,6 +60,10 @@ public class PlaceOrderFormController {
 
         cmbItemCode.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             setItemData(newValue);
+        });
+
+        tblcart.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            tempCartTM = newValue;
         });
 
         //-------------------
@@ -131,19 +136,92 @@ public class PlaceOrderFormController {
     ObservableList<CartTM> cartObList = FXCollections.observableArrayList();
 
     public void addToCart(ActionEvent actionEvent) {
-        int qty = Integer.parseInt(txtQty.getText());
-        double unitPrice = Double.parseDouble(txtItemUnitPrice.getText());
-        double total = qty * unitPrice;
 
-        CartTM tm = new CartTM(
-                cmbItemCode.getValue().toString(),
-                txtItemDescription.getText(),
-                qty,
-                unitPrice,
-                total
-        );
-        cartObList.add(tm);
-        tblcart.setItems(cartObList);
+        if (Integer.parseInt(txtQty.getText()) <=
+                Integer.parseInt(ItemQTYOnHand.getText())) {
+
+            int qty = Integer.parseInt(txtQty.getText());
+            double unitPrice = Double.parseDouble(txtItemUnitPrice.getText());
+            double total = qty * unitPrice;
+
+            CartTM tm = new CartTM(
+                    cmbItemCode.getValue().toString(),
+                    txtItemDescription.getText(),
+                    qty,
+                    unitPrice,
+                    total
+            );
+
+            boolean isExists = checkIsExists(tm);
+            if (isExists) {
+                tblcart.refresh();
+            } else {
+                cartObList.add(tm);
+                calculateTotalCost();
+                tblcart.setItems(cartObList);
+            }
+
+        } else {
+            new Alert(Alert.AlertType.CONFIRMATION,
+                    "Invalid qty").show();
+        }
+
 
     }
+
+    private boolean checkIsExists(CartTM tm) {
+        int counter = 0;
+        for (CartTM temp : cartObList
+        ) {
+            if (temp.getItemCode().equals(tm.getItemCode())) {
+
+                if (cartObList.get(counter).getQty() >= Integer.parseInt(txtQty.getText())
+                        + cartObList.get(counter).getQty()) {
+
+                    cartObList.get(counter).setQty(tm.getQty() + temp.getQty());
+                    cartObList.get(counter).setTotal(tm.getTotal() + temp.getTotal());
+                    calculateTotalCost();
+                    return true;
+                } else {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Invalid QTY").show();
+                    return true;
+                }
+
+
+            }
+            counter++;
+        }
+        return false;
+    }
+
+    CartTM tempCartTM = null;
+
+    public void btnRemoveOnAction(ActionEvent actionEvent) {
+        if (tempCartTM != null) {
+            for (CartTM tm : cartObList
+            ) {
+                if (tm.getItemCode().equals(tempCartTM.getItemCode())) {
+                    cartObList.remove(tm);
+                    calculateTotalCost();
+                    tblcart.refresh();
+                }
+            }
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Please Select a Row.").show();
+        }
+    }
+
+    void calculateTotalCost() {
+
+        double total = 0.00;
+
+        for (CartTM tm : cartObList
+        ) {
+            /*total=total+tm.getTotal();*/
+            total += tm.getTotal();
+        }
+        txtTotal.setText(total + " /=");
+    }
+
+
 }
