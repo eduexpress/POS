@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -32,6 +33,27 @@ public class OrderListFormController {
         colTotalCost.setCellValueFactory(new PropertyValueFactory<>("total"));
 
         loadAllOrders();
+
+        //-----------------
+
+        tblOrdersId.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            FXMLLoader loader = new
+                    FXMLLoader(getClass().getResource("../views/OrderDetailForm.fxml"));
+            try {
+                Parent root = loader.load();
+                OrderDetailFormController controller = loader.getController();
+                controller.setData(newValue.getId());
+                Stage s = new Stage();
+                s.setScene(new Scene(root));
+                s.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        //-----------------
+
     }
 
     private void loadAllOrders() {
