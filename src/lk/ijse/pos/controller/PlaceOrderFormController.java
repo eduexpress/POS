@@ -12,10 +12,13 @@ import javafx.stage.Stage;
 import lk.ijse.pos.db.DataBase;
 import lk.ijse.pos.model.Customer;
 import lk.ijse.pos.model.Item;
+import lk.ijse.pos.model.ItemDetails;
+import lk.ijse.pos.model.Order;
 import lk.ijse.pos.views.tm.CartTM;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class PlaceOrderFormController {
@@ -38,6 +41,7 @@ public class PlaceOrderFormController {
     public TableColumn colUnitPrice;
     public TableColumn colTotal;
     public Label txtTotal;
+    public Label txtOId;
 
     public void initialize() {
 
@@ -224,4 +228,33 @@ public class PlaceOrderFormController {
     }
 
 
+    public void placeOrder(ActionEvent actionEvent) {
+        ArrayList<ItemDetails> details = new ArrayList<>();
+        for (CartTM tm : cartObList
+        ) {
+            details.add(
+                    new ItemDetails(
+                            tm.getItemCode(),
+                            tm.getQty(), tm.getUnitPrice()
+                    )
+            );
+        }
+
+        Order order = new Order(
+                txtOId.getText(),
+                txtDate.getText(),
+                cmbCustomerId.getValue(),
+                Double.parseDouble(txtTotal.getText().split(" /=")[0]),
+                details
+
+        );
+
+        if (DataBase.orderList.add(order)) {
+            new Alert(Alert.AlertType.CONFIRMATION, " Placed.").show();
+            cartObList.clear();
+            calculateTotalCost();
+        }
+
+
+    }
 }
