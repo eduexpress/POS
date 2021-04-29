@@ -44,4 +44,8 @@ public class DashBoardFormController {
     public void PlaceOrderForm(MouseEvent mouseEvent) throws IOException {
         setUI("PlaceOrderForm");
     }
+
+    public void openOrderListForm(MouseEvent mouseEvent) throws IOException {
+        setUI("OrderListForm");
+    }
 }
