@@ -6,77 +6,77 @@
 <?import javafx.scene.text.*?>
 <AnchorPane fx:id="contextOfItemForm" prefHeight="491.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/15.0.1"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pos.controller.ItemFormController">
-   <children>
-      <Button layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#backToHomeOnAction" text="Back To Home"
-              textFill="#9e0505">
-         <font>
-            <Font name="System Bold" size="13.0"/>
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND"/>
-         </cursor>
-      </Button>
-      <Label alignment="CENTER" layoutX="139.0" layoutY="21.0" prefHeight="35.0" prefWidth="461.0" text="Item Form"
-             textFill="#2f0051">
-         <font>
-            <Font name="System Bold" size="24.0"/>
-         </font>
-      </Label>
-      <Button layoutX="654.0" layoutY="24.0" mnemonicParsing="false" onAction="#newItemOnAction" text="+ New Item"
-              textFill="#06299c">
-         <font>
-            <Font name="System Bold" size="13.0"/>
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND"/>
-         </cursor>
-      </Button>
-      <TextField fx:id="txtItemCode" layoutX="24.0" layoutY="77.0" promptText="Item Code">
-         <font>
-            <Font size="13.0"/>
-         </font>
-      </TextField>
-      <TextField fx:id="txtQTYOnHand" layoutX="193.0" layoutY="77.0" prefHeight="29.0" prefWidth="313.0"
-                 promptText="QTY On Hand">
-         <font>
-            <Font size="13.0"/>
-         </font>
-      </TextField>
-      <TextField fx:id="txtUnitPrice" layoutX="520.0" layoutY="77.0" prefHeight="29.0" prefWidth="221.0"
-                 promptText="Unit Price">
-         <font>
-            <Font size="13.0"/>
-         </font>
-      </TextField>
-      <TextField fx:id="txtDescription" layoutX="24.0" layoutY="113.0" prefHeight="29.0" prefWidth="591.0"
-                 promptText="Description">
-         <font>
-            <Font size="13.0"/>
-         </font>
-      </TextField>
-      <Button fx:id="btnSaveButton" layoutX="635.0" layoutY="113.0" mnemonicParsing="false" onAction="#saveItemOnAction"
-              prefHeight="29.0" prefWidth="107.0" text="Save Item" textFill="#06299c">
-         <font>
-            <Font name="System Bold" size="13.0"/>
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND"/>
-         </cursor>
-      </Button>
-      <TextField fx:id="txtSearch" layoutX="24.0" layoutY="173.0" onKeyReleased="#searchItem" prefHeight="29.0"
-                 prefWidth="717.0" promptText="Search here">
-         <font>
-            <Font size="13.0"/>
-         </font>
-      </TextField>
+    <children>
+        <Button layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onAction="#backToHomeOnAction" text="Back To Home"
+                textFill="#9e0505">
+            <font>
+                <Font name="System Bold" size="13.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <Label alignment="CENTER" layoutX="139.0" layoutY="21.0" prefHeight="35.0" prefWidth="461.0" text="Item Form"
+               textFill="#2f0051">
+            <font>
+                <Font name="System Bold" size="24.0"/>
+            </font>
+        </Label>
+        <Button layoutX="654.0" layoutY="24.0" mnemonicParsing="false" onAction="#newItemOnAction" text="+ New Item"
+                textFill="#06299c">
+            <font>
+                <Font name="System Bold" size="13.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <TextField fx:id="txtItemCode" editable="false" layoutX="24.0" layoutY="77.0" promptText="Item Code">
+            <font>
+                <Font size="13.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="txtQTYOnHand" layoutX="193.0" layoutY="77.0" prefHeight="29.0" prefWidth="313.0"
+                   promptText="QTY On Hand">
+            <font>
+                <Font size="13.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="txtUnitPrice" layoutX="520.0" layoutY="77.0" prefHeight="29.0" prefWidth="221.0"
+                   promptText="Unit Price">
+            <font>
+                <Font size="13.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="txtDescription" layoutX="24.0" layoutY="113.0" prefHeight="29.0" prefWidth="591.0"
+                   promptText="Description">
+            <font>
+                <Font size="13.0"/>
+            </font>
+        </TextField>
+        <Button fx:id="btnSaveButton" layoutX="635.0" layoutY="113.0" mnemonicParsing="false"
+                onAction="#saveItemOnAction" prefHeight="29.0" prefWidth="107.0" text="Save Item" textFill="#06299c">
+            <font>
+                <Font name="System Bold" size="13.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <TextField fx:id="txtSearch" layoutX="24.0" layoutY="173.0" onKeyReleased="#searchItem" prefHeight="29.0"
+                   prefWidth="717.0" promptText="Search here">
+            <font>
+                <Font size="13.0"/>
+            </font>
+        </TextField>
       <TableView fx:id="tblItems" layoutX="24.0" layoutY="213.0" prefHeight="265.0" prefWidth="717.0">
-         <columns>
-            <TableColumn fx:id="colItemCode" prefWidth="75.0" text="Code"/>
-            <TableColumn fx:id="colItemDescription" prefWidth="162.0" text="Description"/>
-            <TableColumn fx:id="colItemUnitPrice" prefWidth="220.0" text="Unit Price"/>
-            <TableColumn fx:id="colItemQTY" prefWidth="116.0" text="QTY"/>
-            <TableColumn fx:id="colItemOperate" prefWidth="143.0" text="Operate"/>
-         </columns>
+          <columns>
+              <TableColumn fx:id="colItemCode" prefWidth="75.0" text="Code"/>
+              <TableColumn fx:id="colItemDescription" prefWidth="162.0" text="Description"/>
+              <TableColumn fx:id="colItemUnitPrice" prefWidth="220.0" text="Unit Price"/>
+              <TableColumn fx:id="colItemQTY" prefWidth="116.0" text="QTY"/>
+              <TableColumn fx:id="colItemOperate" prefWidth="143.0" text="Operate"/>
+          </columns>
       </TableView>
       <Separator layoutX="24.0" layoutY="67.0" prefHeight="0.0" prefWidth="717.0" />
    </children>

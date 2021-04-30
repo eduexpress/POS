@@ -16,10 +16,10 @@ public class DataBase {
             new ArrayList/*<>*/();
 
     static {
-        customersList.add(new Customer("C-001", "Nimal",
+     /*   customersList.add(new Customer("C-001", "Nimal",
                 "Colombo", 25000));
         customersList.add(new Customer("C-002", "Wasantha",
-                "Panadura", 50000));
+                "Panadura", 50000));*/
         //-------------------------------------
         itemList.add(new Item(
                 "I-001", "Description 1", 20, 250

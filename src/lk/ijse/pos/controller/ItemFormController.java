@@ -42,6 +42,7 @@ public class ItemFormController {
         colItemOperate.setCellValueFactory(new PropertyValueFactory<>("btn"));
 
         loadItems("");
+        setItemCode();
 
         //----------------------------
 
@@ -52,6 +53,29 @@ public class ItemFormController {
         });
 
         //----------------------------
+    }
+
+    private void setItemCode() {
+        if (DataBase.itemList.size() > 0) {
+
+            String tempNumber = DataBase.itemList.get(DataBase.itemList.size() - 1).getId();
+            String array[] = tempNumber.split("I-");
+            int number = Integer.parseInt(array[1]);
+            number++;
+
+            if (number > 100) {
+                tempNumber = "I-" + number;
+            } else if (number > 10) {
+                tempNumber = "I-0" + number;
+            } else {
+                tempNumber = "I-00" + number;
+            }
+
+            txtItemCode.setText(tempNumber);
+
+        } else {
+            txtItemCode.setText("C-001");
+        }
     }
 
     private void setData(ItemTM tm) {
@@ -104,6 +128,7 @@ public class ItemFormController {
         txtDescription.clear();
         txtQTYOnHand.clear();
         btnSaveButton.setText("Save Item");
+        setItemCode();
     }
 
     public void saveItemOnAction(ActionEvent actionEvent) {

@@ -29,9 +29,9 @@
          </cursor>
       </Button>
       <Separator layoutX="14.0" layoutY="57.0" prefHeight="0.0" prefWidth="717.0" />
-      <TextField fx:id="txtCId" layoutX="14.0" layoutY="67.0" promptText="Customer Id">
+      <TextField fx:id="txtCId" editable="false" layoutX="14.0" layoutY="67.0" promptText="Customer Id">
          <font>
-            <Font size="13.0" />
+            <Font size="13.0"/>
          </font>
       </TextField>
       <TextField fx:id="txtCName" layoutX="183.0" layoutY="67.0" prefHeight="29.0" prefWidth="313.0" promptText="Customer Name">

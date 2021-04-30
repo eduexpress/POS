@@ -38,6 +38,7 @@ public class CustomerFormController {
         colCusSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
         colCusOperate.setCellValueFactory(new PropertyValueFactory<>("btn"));
         loadAllCustomers();
+        setCustomerId();
 
         //-----------------------------
         tblCustomer.getSelectionModel().selectedItemProperty()
@@ -48,6 +49,33 @@ public class CustomerFormController {
 
                 });
         //-----------------------------
+
+
+    }
+
+    private void setCustomerId() {
+
+        if (DataBase.customersList.size() > 0) {
+
+            String tempNumber = DataBase.customersList.get(DataBase.customersList.size() - 1).getId();
+            String array[] = tempNumber.split("C-");
+            int number = Integer.parseInt(array[1]);
+            number++;
+
+            if (number > 100) {
+                tempNumber = "C-" + number;
+            } else if (number > 10) {
+                tempNumber = "C-0" + number;
+            } else {
+                tempNumber = "C-00" + number;
+            }
+
+
+            txtCId.setText(tempNumber);
+
+        } else {
+            txtCId.setText("C-001");
+        }
 
 
     }
@@ -140,6 +168,7 @@ public class CustomerFormController {
         txtCName.clear();
         txtCAddress.clear();
         txtCSalary.clear();
+        setCustomerId();
     }
 
 

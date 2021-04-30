@@ -1,5 +1,6 @@
 package lk.ijse.pos.controller;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -55,6 +56,7 @@ public class PlaceOrderFormController {
         setDateAndTime();
         loadAllCustomerIds();
         loadAllItemIds();
+        setOrderId();
 
         //-------------------
 
@@ -72,6 +74,29 @@ public class PlaceOrderFormController {
 
         //-------------------
 
+    }
+
+    private void setOrderId() {
+        if (DataBase.orderList.size() > 0) {
+
+            String tempNumber = DataBase.orderList.get(DataBase.orderList.size() - 1).getOrderId();
+            String array[] = tempNumber.split("O-");
+            int number = Integer.parseInt(array[1]);
+            number++;
+
+            if (number > 100) {
+                tempNumber = "O-" + number;
+            } else if (number > 10) {
+                tempNumber = "O-0" + number;
+            } else {
+                tempNumber = "O-00" + number;
+            }
+
+            txtOId.setText(tempNumber);
+
+        } else {
+            txtOId.setText("O-001");
+        }
     }
 
     private void setCustomerData(String id) {
@@ -123,8 +148,26 @@ public class PlaceOrderFormController {
         SimpleDateFormat f = new SimpleDateFormat("YYYY-MM-dd");
         /*String tempDate=f.format(date );
         txtDate.setText(tempDate);*/
-        txtDate.setText(f.format(date));
-        txtTime.setText(new SimpleDateFormat("HH:mm:ss").format(date));
+       /* txtDate.setText(f.format(date));
+        txtTime.setText(new SimpleDateFormat("HH:mm:ss").format(date));*/
+
+
+        Thread timer = new Thread(() -> {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+            while (true) {
+                try {
+                    Thread.sleep(1000);// 1 sec
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                final String time = simpleDateFormat.format(new Date());
+                Platform.runLater(() -> {
+                    txtTime.setText(time);
+                });
+            }
+        });
+        timer.start();
+
     }
 
 
